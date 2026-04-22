@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Recuerdos ❤️</title>
+
+<style>
+body {
+    text-align: center;
+    background: linear-gradient(135deg, #40E0D0, #FFB6C1, #FFF5E1);
+    font-family: 'Segoe Script', cursive;
+    padding: 30px;
+    margin: 0;
+}
+
+/* 💖 TÍTULO */
+h1 {
+    font-size: 40px;
+    color: #b30059;
+    text-shadow: 2px 2px 15px pink;
+}
+
+/* ✨ TEXTO */
+p {
+    font-size: 22px;
+    color: #8b004f;
+    margin-bottom: 30px;
+}
+
+/* 📸 GALERÍA */
+.galeria {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+/* 🖼️ TARJETAS DE FOTO */
+.foto {
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px pink;
+    transition: 0.3s;
+}
+
+/* IMAGEN */
+.foto img {
+    width: 200px;
+    border-radius: 15px;
+}
+
+/* 💫 EFECTO */
+.foto:hover {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* 🔙 BOTÓN */
+button {
+    margin-top: 40px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(45deg, pink, #ff69b4);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px pink;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🎵 MÚSICA -->
+<iframe src="musica.html" style="display:none;"></iframe>
+
+<h1>💖 Nuestros recuerdos 💖</h1>
+<p>Sigamos creando más recuerdos 💘</p>
+
+<!-- 📸 GALERÍA -->
+<div class="galeria">
+
+    <div class="foto">
+        <img src="img/foto1.jpeg">
+    </div>
+
+    <div class="foto">
+        <img src="img/foto2.jpeg">
+    </div>
+
+    <div class="foto">
+        <img src="img/foto3.jpeg">
+    </div>
+
+    <div class="foto">
+        <img src="img/foto4.jpeg">
+    </div>
+
+</div>
+
+<button onclick="window.location.href='menu.html'">⬅ Volver</button>
+
+</body>
+</html>

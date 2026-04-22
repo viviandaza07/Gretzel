@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Juego ❤️</title>
+
+<style>
+body {
+    font-family: 'Segoe Script', cursive;
+    text-align: center;
+    background: linear-gradient(135deg, #40E0D0, #FFB6C1, #FFF5E1);
+    padding: 50px;
+    margin: 0;
+}
+
+/* 💖 TÍTULO */
+h1 {
+    font-size: 40px;
+    color: #b30059;
+    text-shadow: 2px 2px 15px pink;
+}
+
+/* 🎮 CONTENEDOR */
+#contenedor {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+    animation: aparecer 1s ease;
+}
+
+/* ✨ ANIMACIÓN */
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ❓ PREGUNTA */
+#pregunta {
+    font-size: 26px;
+    color: #8b004f;
+    margin-bottom: 20px;
+}
+
+/* 🎯 OPCIONES */
+.opcion {
+    display: block;
+    width: 70%;
+    margin: 10px auto;
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(45deg, pink, #ff69b4);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 0 10px pink;
+    transition: 0.3s;
+}
+
+.opcion:hover {
+    transform: scale(1.08);
+}
+
+/* 📝 INPUT */
+input {
+    padding: 12px;
+    border-radius: 15px;
+    border: 1px solid pink;
+    width: 60%;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* 🔙 BOTÓN VOLVER */
+.volver {
+    margin-top: 40px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 0 20px pink;
+    transition: 0.3s;
+}
+
+.volver:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px hotpink;
+}
+
+/* 💘 FINAL */
+.final {
+    animation: aparecer 1.5s ease;
+}
+
+.final h2 {
+    font-size: 35px;
+    color: #b30059;
+    text-shadow: 2px 2px 15px pink;
+}
+
+.final p {
+    font-size: 22px;
+    color: #8b004f;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🎵 MÚSICA -->
+<iframe src="musica.html" style="display:none;"></iframe>
+
+<h1>🎮 Trivia Jujutsu Kaisen 💖</h1>
+
+<div id="contenedor">
+    <p id="pregunta"></p>
+    <div id="opciones"></div>
+</div>
+
+<button class="volver" onclick="window.location.href='menu.html'">
+    ⬅ Volver
+</button>
+
+<script>
+
+let preguntas = [
+    {
+        pregunta: "¿Quién es el protagonista?",
+        opciones: ["Gojo", "Itadori", "Megumi", "Sukuna"],
+        correcta: 1
+    },
+    {
+        pregunta: "¿Quién es el hechicero más fuerte?",
+        opciones: ["Nanami", "Gojo", "Geto", "Toji"],
+        correcta: 1
+    },
+    {
+        pregunta: "¿Qué contiene el cuerpo de Itadori?",
+        opciones: ["Un espíritu", "Una maldición", "Sukuna", "Nada"],
+        correcta: 2
+    },
+    {
+        pregunta: "¿Quién usa la técnica de sombras?",
+        opciones: ["Gojo", "Megumi", "Yuji", "Yuta"],
+        correcta: 1
+    },
+    {
+        pregunta: "¿Quién es amigo de Gojo?",
+        opciones: ["Geto", "Yuji", "Todo", "Nanami"],
+        correcta: 0
+    },
+    {
+        pregunta: "¿Qué come Itadori al inicio?",
+        opciones: ["Un dedo", "Un arma", "Un libro", "Una maldición"],
+        correcta: 0
+    },
+    {
+        pregunta: "¿Qué es Sukuna?",
+        opciones: ["Humano", "Dios", "Maldición", "Hechicero"],
+        correcta: 2
+    }
+];
+
+let actual = 0;
+
+function cargarPregunta() {
+    if (actual < preguntas.length) {
+        let p = preguntas[actual];
+
+        document.getElementById("pregunta").innerText = p.pregunta;
+
+        let opcionesHTML = "";
+        p.opciones.forEach((op, i) => {
+            opcionesHTML += `<button class="opcion" onclick="responder(${i})">${op}</button>`;
+        });
+
+        document.getElementById("opciones").innerHTML = opcionesHTML;
+    } else {
+        preguntaFinal();
+    }
+}
+
+function responder(opcion) {
+    if (opcion === preguntas[actual].correcta) {
+        actual++;
+        cargarPregunta();
+    } else {
+        alert("❌ Intenta otra vez 💔");
+    }
+}
+
+/* 💘 PREGUNTA FINAL */
+function preguntaFinal() {
+    document.getElementById("pregunta").innerText =
+        "¿Cuál es la peor maldición y por ende la más fuerte?";
+
+    document.getElementById("opciones").innerHTML = `
+        <input id="respuestaFinal" placeholder="Escribe tu respuesta">
+        <br><br>
+        <button class="opcion" onclick="verificarFinal()">Responder</button>
+    `;
+}
+
+function verificarFinal() {
+    let r = document.getElementById("respuestaFinal").value.toLowerCase();
+
+    if (r === "amor") {
+        document.getElementById("contenedor").innerHTML = `
+            <div class="final">
+                <h2>💖 Correcto 💖</h2>
+                <p>
+                    Así que maldíceme todo lo que te sea posible  
+                    hasta el fin de nuestros días ❤️
+                </p>
+            </div>
+        `;
+    } else {
+        alert("❌ Intenta otra vez 💔");
+    }
+}
+
+cargarPregunta();
+
+</script>
+
+</body>
+</html>

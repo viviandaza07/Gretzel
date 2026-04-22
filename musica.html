@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body style="margin:0">
+
+<audio id="musica" autoplay>
+    <source src="musica.mp4" type="audio/mpeg">
+</audio>
+
+<script>
+let audio = document.getElementById("musica");
+
+/* volumen */
+audio.volume = 0.3;
+
+/* 🔁 RECUPERAR TIEMPO */
+let tiempoGuardado = localStorage.getItem("tiempoMusica");
+
+if (tiempoGuardado) {
+    audio.currentTime = tiempoGuardado;
+}
+
+/* 💾 GUARDAR TIEMPO CONSTANTEMENTE */
+setInterval(() => {
+    localStorage.setItem("tiempoMusica", audio.currentTime);
+}, 1000);
+
+/* 🔄 CUANDO TERMINA → reinicia limpio */
+audio.addEventListener("ended", () => {
+    localStorage.setItem("tiempoMusica", 0);
+});
+
+/* 🔓 ACTIVAR AUDIO CON CLICK (ANTI BLOQUEO) */
+document.addEventListener("click", () => {
+    audio.play();
+});
+</script>
+
+</body>
+</html>

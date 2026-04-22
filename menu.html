@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Menú ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe Script', cursive;
+    background: linear-gradient(135deg, #40E0D0, #FFB6C1, #FFF5E1);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 💖 CONTENEDOR */
+.menu-container {
+    text-align: center;
+}
+
+/* 💎 TÍTULO */
+h1 {
+    font-size: 45px;
+    color: #b30059;
+    text-shadow: 2px 2px 15px pink;
+    margin-bottom: 40px;
+}
+
+/* 🧱 GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 220px);
+    gap: 40px;
+    justify-content: center;
+}
+
+/* 💖 TARJETAS */
+.card {
+    width: 200px;
+    height: 200px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255,105,180,0.6);
+    transition: 0.3s;
+}
+
+/* 🎨 DIFERENTES ESTILOS */
+.recuerdos {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+}
+
+.razones {
+    background: linear-gradient(45deg, #a18cd1, #fbc2eb);
+}
+
+.sentimientos {
+    background: linear-gradient(45deg, #f6d365, #fda085);
+}
+
+.juego {
+    background: linear-gradient(45deg, #84fab0, #8fd3f4);
+}
+
+/* ✨ HOVER */
+.card:hover {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* 💖 CORAZONES */
+.corazon {
+    position: absolute;
+    animation: caer 6s linear infinite;
+}
+
+@keyframes caer {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(100vh); }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🎵 MÚSICA -->
+<iframe src="musica.html" style="display:none;"></iframe>
+
+<div class="menu-container">
+    <h1>💖 Nuestro Espacio 💖</h1>
+
+    <div class="grid">
+
+        <div class="card recuerdos" onclick="ir('recuerdos.html')">
+            💖 Recuerdos
+        </div>
+
+        <div class="card razones" onclick="ir('razones.html')">
+            💌 Razones
+        </div>
+
+        <div class="card sentimientos" onclick="ir('sentimientos.html')">
+            💘 Sentimientos
+        </div>
+
+        <div class="card juego" onclick="ir('juego.html')">
+            🎮 Juego
+        </div>
+
+    </div>
+</div>
+
+<script>
+function ir(pagina) {
+    window.location.href = pagina;
+}
+
+/* 💖 CORAZONES */
+function crearCorazon() {
+    let c = document.createElement("div");
+    c.innerHTML = "💖";
+    c.className = "corazon";
+
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.fontSize = (Math.random() * 20 + 20) + "px";
+
+    document.body.appendChild(c);
+
+    setTimeout(() => c.remove(), 6000);
+}
+
+setInterval(crearCorazon, 300);
+</script>
+
+</body>
+</html>

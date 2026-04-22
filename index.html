@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe Script', cursive;
+    background: linear-gradient(135deg, #40E0D0, #FFB6C1, #FFF5E1);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* CENTRAR */
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* LOGIN */
+#login {
+    animation: aparecer 1.5s ease;
+}
+
+input {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(45deg, pink, #ff69b4);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px pink;
+}
+
+/* MENSAJE */
+#mensaje {
+    display: none;
+    max-width: 800px;
+    font-size: 30px;
+    color: #b30059;
+    line-height: 1.6;
+}
+
+/* TEXTO DINÁMICO */
+#texto {
+    min-height: 150px;
+}
+
+/* TE AMO */
+#teamo {
+    display: none;
+    margin-top: 20px;
+    font-size: 70px;
+    color: #8B0000;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow:
+        0 0 10px red,
+        0 0 25px #ff1493,
+        0 0 50px pink;
+    transition: 0.3s;
+}
+
+#teamo:hover {
+    transform: scale(1.2);
+}
+
+/* ANIMACIÓN */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* CORAZONES */
+.corazon {
+    position: absolute;
+    animation: caer 6s linear infinite;
+}
+
+@keyframes caer {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(100vh); }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🎵 MÚSICA -->
+<iframe src="musica.html" style="display:none;"></iframe>
+
+<!-- LOGIN -->
+<div id="login" class="center">
+    <h2>💌 Ingresa la contraseña 💌</h2>
+    <input type="text" id="password" placeholder="Lugar donde nos conocimos">
+    <br><br>
+    <button onclick="verificar()">Entrar</button>
+</div>
+
+<!-- MENSAJE -->
+<div id="mensaje" class="center">
+    <div id="texto"></div>
+    <span id="teamo" onclick="irMenu()">TE AMO</span>
+</div>
+
+<script>
+
+/* TEXTO A MOSTRAR */
+let mensaje = `Desde que llegaste a mi vida todo mi mundo cambió, cada momento contigo es especial,
+cada sonrisa tuya ilumina mi vida, me vuelves loco y no hay día que no piense en ti.
+
+Quiero tenerte a mi lado para toda mi vida y que nunca olvides cuánto significas para mí.`;
+
+/* EFECTO ESCRITURA */
+let i = 0;
+
+function escribirTexto() {
+    if (i < mensaje.length) {
+        document.getElementById("texto").innerHTML += mensaje.charAt(i);
+        i++;
+        setTimeout(escribirTexto, 40);
+    } else {
+        document.getElementById("teamo").style.display = "block";
+    }
+}
+
+/* CONTRASEÑA */
+function verificar() {
+    let pass = document.getElementById("password").value.toLowerCase();
+
+    if (pass.includes("comercio")) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("mensaje").style.display = "block";
+
+        escribirTexto(); // 🔥 inicia animación
+    } else {
+        alert("❌ Intenta otra vez ❤️");
+    }
+}
+
+/* IR AL MENÚ */
+function irMenu() {
+    window.location.href = "menu.html"; // cambia si necesario
+}
+
+/* CORAZONES */
+function crearCorazon() {
+    let c = document.createElement("div");
+    c.innerHTML = "💖";
+    c.className = "corazon";
+
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.fontSize = (Math.random() * 20 + 20) + "px";
+
+    document.body.appendChild(c);
+
+    setTimeout(() => c.remove(), 6000);
+}
+
+setInterval(crearCorazon, 300);
+
+</script>
+
+</body>
+</html>
